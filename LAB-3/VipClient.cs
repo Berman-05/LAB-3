@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace LAB_3
 {
     internal class VipClient
-    {
+    }
     }
 }
