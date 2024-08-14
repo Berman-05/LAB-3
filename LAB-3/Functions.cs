@@ -9,10 +9,16 @@ namespace LAB_3
 {
     public class Functions
     {
-        public List<Clients> clientsList = new List<Clients>();
-        public List<Reservation> reservationsList = new List<Reservation>();
+        public static List<Clients> clientsList = new List<Clients>();
+        public static List<Reservation> reservationsList = new List<Reservation>();
 
         public virtual void AddRegularClient()
+        {
+            var (newName, newEmail, newPhoneNumber) = AddClient();
+            Clients newCLient = new Clients(newName, newEmail, newPhoneNumber);
+            clientsList.Add(newCLient);
+        }
+        public virtual void AddVIpClient()
         {
             var (newName, newEmail, newPhoneNumber) = AddClient();
             Clients newCLient = new Clients(newName, newEmail, newPhoneNumber);
@@ -45,7 +51,27 @@ namespace LAB_3
         }
         public void AddReservation()
         {
-
+            string newDAte = null; string newHour=null; string newFood=null; double newPrice = 0;
+            Console.WriteLine("Ingrese el número de reservación:");
+            int newReservationNumber=int.Parse(Console.ReadLine());
+            Reservation searchReservation= reservationsList.Find(p=>p.ReservationNumber == newReservationNumber);
+            if (searchReservation != null)
+            {
+                Console.WriteLine("La reservación ya existe...");
+            }
+            else 
+            {
+                Console.WriteLine("Ingrese la fecha de reservación:");
+                 newDAte=Console.ReadLine();
+                Console.WriteLine("Ingrese la hora de reservación:");
+                 newHour=Console.ReadLine();
+                Console.WriteLine("Ingrese el nombre del plato a servir:");
+                 newFood=Console.ReadLine();
+                Console.WriteLine("Ingrese el costo de la comida:");
+                 newPrice=double.Parse(Console.ReadLine());
+            }
+            Reservation newReservation = new Reservation(newReservationNumber,newDAte,newHour,newFood,newPrice);
+            reservationsList.Add(newReservation);
         }
     }
 }
