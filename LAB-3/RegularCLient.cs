@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace LAB_3
 {
-    internal class RegularCLient: Client
+    public class RegularCLient : Clients
     {
-        public int RegisteredCars { get; set; }
-
-        public RegularCLient(string clientName, string clientEMail, string clientAdress, int registeredCars):base (clientName, clientEMail,clientAdress)
+        public RegularCLient(string name, string email, string telephone) : base(name, email, telephone)
         {
-            RegisteredCars = registeredCars;
+        }
+        public override double Total(double total)
+        {
+            total = total * 1;
+            return total;
         }
     }
 }
